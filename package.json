@@ -30,6 +30,7 @@
   "license": "MIT",
   "homepage": "https://github.com/Jerenaux/phaserquest#readme",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.418.0",
     "clone": "^2.1.0",
     "express": "^4.14.0",
     "mongodb": "^3.6.1",
