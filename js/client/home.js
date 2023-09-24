@@ -38,6 +38,7 @@ Home.create = function(){
     if(!Game.isNewPlayer) Home.makeResetScroll();
     Home.displayHomeScroll();
     Home.displayLogo();
+    Home.displayLinks();
     Home.music = game.add.audio('intro');
     Home.music.play();
     document.onkeydown = Home.handleKeyPress;
@@ -59,7 +60,7 @@ Home.displayLogo = function(){
 };
 
 Home.displayLinks = function(){
-    var x = Home.makeLink(300,'About',function(){console.log('about')},true);
+    var x = Home.makeLink(300,'About',function(){window.open("https://www.educative.io/", "_blank")},true);
     x = Home.makeLink(x+30,'Credits',function(){console.log('credits')},true);
     x = Home.makeLink(x+30,'License',function(){console.log('license')},true);
 };
