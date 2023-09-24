@@ -86,9 +86,18 @@ Client.setName = function(name){
     localStorage.setItem('name',name);
 };
 
+Client.setCurrentQuest = function(questName){
+    localStorage.setItem('currentQuest',questName);
+};
+
 Client.getName = function(){
     return localStorage.getItem('name');
 };
+
+Client.getCurrentQuest = function(){
+    return localStorage.getItem('currentQuest');
+};
+
 
 Client.socket.on('pid',function(playerID){ // the 'pid' event is used for the server to tell the client what is the ID of the player
     Client.setLocalData(playerID);

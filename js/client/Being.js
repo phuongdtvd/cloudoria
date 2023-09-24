@@ -12,7 +12,7 @@ Phaser.Sprite.prototype.absorbProperties = function(object){
         this[key] = object[key];
     }
 };
-
+import Quest1 from './game_tests/Quest1.js';
 // Being is the topmost class encompassing all "living" sprites, be it players, NPC or monsters (not items)
 function Being(x,y,key){
     // key is the string indicating which atlas to use
@@ -23,6 +23,8 @@ function Being(x,y,key){
 }
 Being.prototype = Object.create(Phaser.Sprite.prototype); // Declares the inheritance relationship
 Being.prototype.constructor = Being;
+
+
 
 Being.prototype.setAnimations = function(object){
     // object is the sprite to animate
@@ -224,6 +226,17 @@ Being.prototype.finishMovement = function(finalOrientation,action){
     if(this.isPlayer) {
         if (action.action == 1) { // talk
             action.character.displayBubble(action.text);
+            if(action.text === '') Client.setCurrentQuest('Quest1')
+            currentQuest = Client.getCurrentQuest()
+            if(currentQuest !== ''){
+                Quest1()
+                .then((result) => {
+                  console.log(result);
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+            }
             if(!Game.speakAchievement) Game.handleSpeakAchievement();
         }
         Game.moveTarget.visible = false;
