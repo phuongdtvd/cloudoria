@@ -1,5 +1,5 @@
+import { S3Client, HeadBucketCommand } from "@aws-sdk/client-s3";
 export default async function Task1Test(){
-    const { S3Client, HeadBucketCommand } = require("@aws-sdk/client-s3");
     const client = new S3Client();
     const input = { 
       Bucket: "aws-test-game", 

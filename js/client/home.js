@@ -5,6 +5,7 @@
 var Home = {
     maxNameLength : 20 // max length of the name of the player
 };
+window.Home = Home;
 
 Home.init = function(){
     if(game.device.desktop == false){

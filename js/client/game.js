@@ -34,6 +34,7 @@ var Game = {
     clickDelay: Phaser.Timer.SECOND * 0.2, // minimum time between player mouse clicks
     clickEnabled: true // bool used to check if the player has clicked faster than the click delay
 };
+window.Game = Game;
 // used to map the orientation of the player, stored as a number, to the actual name of the orientation
 // (used to select the right animations to play, by name)
 var orientationsDict = {
@@ -42,6 +43,7 @@ var orientationsDict = {
     3: 'right',
     4: 'down'
 };
+window.orientationsDict = orientationsDict;
 
 Game.init = function(){
     Game.easystar = new EasyStar.js();

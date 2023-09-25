@@ -6,6 +6,7 @@ function Factory(create){
     this.graveyard = [];
     this.create = create;
 }
+window.Factory =Factory;
 
 Factory.prototype.next = function(x,y,key){
     // Check if a dead sprite lies in the graveyard ; if yes, "refresh" it and return it, else, create a new one using the "create" callback supplied when creating the factory

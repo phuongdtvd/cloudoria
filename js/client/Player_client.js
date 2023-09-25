@@ -39,6 +39,7 @@ function Player(x,y,key){
         Game.displayedPlayers.delete(player.id);
     },this);
 }
+window.Player = Player;
 Player.prototype = Object.create(Human.prototype);
 Player.prototype.constructor = Player;
 

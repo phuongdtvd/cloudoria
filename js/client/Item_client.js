@@ -11,6 +11,7 @@ function Item(x,y,key){
         item.recycle();
     },this);
 }
+window.Item = Item;
 Item.prototype = Object.create(Phaser.Sprite.prototype);
 Item.prototype.constructor = Item;
 

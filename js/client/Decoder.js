@@ -11,6 +11,7 @@ Decoder.decode = function(data,schema){
     var res = Decoder.decodeObject(data,0,schema);
     return res.object;
 };
+window.Decoder = Decoder;
 
 Decoder.countFields = function(schema){
     // Returns the total number of fields in the schema (regardless of being present in the object to decode or not)

@@ -15,6 +15,7 @@ function Monster(x,y,key){
     this.orientation = game.rnd.between(1,4);
     this.initialPosition = new Phaser.Point(x,y);
 }
+window.Monster = Monster;
 Monster.prototype = Object.create(Being.prototype);
 Monster.prototype.constructor = Monster;
 

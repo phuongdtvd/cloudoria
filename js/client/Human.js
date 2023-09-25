@@ -7,6 +7,7 @@ function Human(x,y,key){
     // key is a string indicating the atlas to use as texture
     Being.call(this,x,y,key);
 }
+window.Human = Human
 Human.prototype = Object.create(Being.prototype);
 Human.prototype.constructor = Human;
 

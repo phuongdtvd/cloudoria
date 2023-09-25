@@ -18,5 +18,6 @@ function NPC(x,y,key){
     Game.collisionArray[tile.y][tile.x] = 1; // So that you have to walk around NPC
     this.events.onInputUp.add(Game.handleCharClick, this);
 }
+window.NPC = NPC;
 NPC.prototype = Object.create(Human.prototype);
 NPC.prototype.constructor = NPC;

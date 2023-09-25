@@ -5,6 +5,7 @@
  * Author: Jerome Renaux
  * E-mail: jerome.renaux@gmail.com
  */
+import Task1Test from './game_tests/Quest1.js';
 // Helper function to make a sprite object absorb all the properties of a provided JSON object; Object.assign() should work as well
 Phaser.Sprite.prototype.absorbProperties = function(object){
     for (var key in object) {
@@ -12,7 +13,6 @@ Phaser.Sprite.prototype.absorbProperties = function(object){
         this[key] = object[key];
     }
 };
-import Quest1 from './game_tests/Quest1.js';
 // Being is the topmost class encompassing all "living" sprites, be it players, NPC or monsters (not items)
 function Being(x,y,key){
     // key is the string indicating which atlas to use
@@ -23,6 +23,7 @@ function Being(x,y,key){
 }
 Being.prototype = Object.create(Phaser.Sprite.prototype); // Declares the inheritance relationship
 Being.prototype.constructor = Being;
+window.Being = Being
 
 
 
@@ -227,9 +228,9 @@ Being.prototype.finishMovement = function(finalOrientation,action){
         if (action.action == 1) { // talk
             action.character.displayBubble(action.text);
             if(action.text === '') Client.setCurrentQuest('Quest1')
-            currentQuest = Client.getCurrentQuest()
+            let currentQuest = Client.getCurrentQuest()
             if(currentQuest !== ''){
-                Quest1()
+                Task1Test()
                 .then((result) => {
                   console.log(result);
                 })
