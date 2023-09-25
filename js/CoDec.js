@@ -6,8 +6,7 @@ var CoDec = {
     booleanBytes: 1, // How many bytes to use to represent booleans (= 8 booleans per byte allocated),
     stampBytes: 4 // How many bytes to encode timestamp (a timestamp takes more room than 4 bytes, but only the last 4 bytes are relevant, since the time spans incoded in the remaining ones are too big to be useful)
 };
-window.CoDec = CoDec;
-
+globalThis.CoDec = CoDec;
 CoDec.int16schema = {
     primitive: true,
     type: 'int',

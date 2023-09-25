@@ -6,7 +6,7 @@ var AOIutils = {
     nbAOIhorizontal: 0,
     lastAOIid: 0
 };
-window.AOIutils = AOIutils;
+globalThis.AOIutils = AOIutils;
 
 
 AOIutils.listAdjacentAOIs = function(current){
