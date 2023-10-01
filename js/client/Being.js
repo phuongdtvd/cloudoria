@@ -219,13 +219,33 @@ Being.prototype.setPosition = function(x,y){
     this.y = y*Game.map.tileHeight;
 };
 
+function isValidHttpUrl(string) {
+    let url;
+    
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
 Being.prototype.finishMovement = function(finalOrientation,action){
     // Called whenever a path has been travelled to its end; based on the action object, the appropriate action is taken
     // finalOrientation is a value between 1 and 4 indicatinh the orientation the player should have at the end of the path
     // action is a small object containing data about what to do once the path is ended (talk to NPC, fight monster, ...)
     if(this.isPlayer) {
         if (action.action == 1) { // talk
-            action.character.displayBubble(action.text);
+            function getQuest(){
+                Client.sendCheck("Quest1")
+            }
+            console.log(action.text)
+            if(isValidHttpUrl(action.text)){
+                action.character.displayBubble(action.text, action.text);
+            } else{
+                action.character.displayBubble(action.text);
+            }
             if(!Game.speakAchievement) Game.handleSpeakAchievement();
         }
         Game.moveTarget.visible = false;
