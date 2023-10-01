@@ -5,7 +5,7 @@
  * Author: Jerome Renaux
  * E-mail: jerome.renaux@gmail.com
  */
-import Task1Test from './game_tests/Quest1.js';
+import Task1Test from './task_tests/Quest1_test.js';
 // Helper function to make a sprite object absorb all the properties of a provided JSON object; Object.assign() should work as well
 Phaser.Sprite.prototype.absorbProperties = function(object){
     for (var key in object) {
