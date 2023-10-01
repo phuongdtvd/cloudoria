@@ -17,7 +17,7 @@ Human.prototype.generateBubble = function(){
     this.bubble.exists = false;
 };
 
-Human.prototype.displayBubble = function(text){
+Human.prototype.displayBubble = function(text, hyperlink=null){
     // Displays a speech bubble above a character, containing the string in text
     var maxTextWidth = 200;
     if(!text){
@@ -28,6 +28,13 @@ Human.prototype.displayBubble = function(text){
     this.bubble.exists = true;
     var txt = this.bubble.getChildAt(10);
     txt.text = text;
+    if(hyperlink){
+        txt.inputEnabled = true;
+        txt.input.useHandCursor = true;
+        txt.events.onInputUp.add(function() {
+            window.open(hyperlink, "_blank");
+        }, this);
+    }
     txt.style.wordWrap = true;
     txt.style.wordWrapWidth = maxTextWidth;
     var width = Phaser.Math.clamp(txt.width,30,maxTextWidth);
