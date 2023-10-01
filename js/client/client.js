@@ -143,6 +143,11 @@ Client.socket.on('chat',function(data){
     Game.playerSays(data.id,data.txt);
 });
 
+Client.socket.on('check-done',function(result){
+    // chat is sent by the server when another nearby player has said something
+    console.log(result)
+});
+
 Client.sendPath = function(path,action,finalOrientation){
     // Send the path that the player intends to travel
     Client.socket.emit('path',{
@@ -156,6 +161,12 @@ Client.sendChat = function(txt){
     // Send the text that the player wants to say
     if(!txt.length || txt.length > Game.maxChatLength) return;
     Client.socket.emit('chat',txt);
+};
+
+Client.sendCheck = function(questName){
+    if(questName === '') return;
+    console.log("Sendcheck: ", questName)
+    Client.socket.emit('check-quest', questName);
 };
 
 Client.sendRevive = function(){

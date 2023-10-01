@@ -121,6 +121,12 @@ io.on('connection',function(socket){
         }
     });
 
+    socket.on('check-quest',async function(questName){
+        console.log("check-quest")
+        result = await gs.checkQuest(questName)
+        socket.emit('check-done', result)
+    });
+
     socket.on('revive',function(){
         gs.revivePlayer(gs.getPlayerID(socket.id));
     });

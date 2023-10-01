@@ -8,11 +8,13 @@ async function Task1Test(){
     try {
         const response = await client.send(command);
         return {
+            completed: true,
             statusCode: response["$metadata"].httpStatusCode,
             error: null
         };
     } catch (error) {
         return {
+            completed: false,
             statusCode: error.response ? error.response["$metadata"].httpStatusCode : null,
             error: error.message
         };

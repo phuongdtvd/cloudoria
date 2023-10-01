@@ -1,31 +1,25 @@
-import {aws_access_key_id, aws_secret_access_key} from "../../../.env"
-import { S3Client, HeadObjectCommand  } from "@aws-sdk/client-s3"
-export default async function Task2Test(){
+async function Task2Test(){
+    const { S3Client, HeadObjectCommand } = require("@aws-sdk/client-s3");
     const client = new S3Client();
     const input = { 
       Bucket: "aws-test-game",
       Key: "index.html" 
     };
     const command = new HeadObjectCommand(input);
-    try{
+    try {
         const response = await client.send(command);
-        if(response["$metadata"].httpStatusCode === 200){
-            return true
-        }
-        else{
-            return false
-        }
-    } catch(error){
-        return(error)
+        return {
+            completed: true,
+            statusCode: response["$metadata"].httpStatusCode,
+            error: null
+        };
+    } catch (error) {
+        return {
+            completed: false,
+            statusCode: error.response ? error.response["$metadata"].httpStatusCode : null,
+            error: error.message
+        };
     }
 }
 
-
-async function asyncCall() {
-    console.log('calling');
-    const result = await Task2Test();
-    console.log(result);
-    // Expected output: "resolved"
-}
-
-  
+module.exports = Task2Test

@@ -6,6 +6,9 @@ var fs = require('fs');
 var PF = require('pathfinding');
 var clone = require('clone'); // used to clone objects, essentially used for clonick update packets
 var rwc = require('random-weighted-choice'); // used to randomly decide which loot a monster should drop
+//Quest related imports
+var Quest1 = require("./quests/Quest1")
+var Quest2 = require("./quests/Quest2")
 
 var GameServer = {
     map: null, // object containing all the data about the world map
@@ -30,7 +33,11 @@ var GameServer = {
     nbConnectedChanged: false, // has the number of connected players changed since last update packet or not
     players: {}, // map of all connected players, fetchable by id
     socketMap: {}, // map of socket id's to the player id's of the associated players
-    IDmap: {} // map of player id's to their mondo db uid's
+    IDmap: {}, // map of player id's to their mondo db uid's
+    quests: {
+        Quest1: Quest1,
+        Quest2: Quest2,
+    }
 };
 
 module.exports.GameServer = GameServer;
@@ -248,6 +255,14 @@ GameServer.setLoops = function(){ // Sets up the server update loop, and the reg
     setInterval(GameServer.update,GameServer.updateRate);
     setInterval(GameServer.regenerate,GameServer.regenRate);
 };
+
+// ==============================
+// Code related to Quest management
+GameServer.checkQuest = async function (questName){
+    let quest = GameServer.quests[questName]
+    let completion = await quest.GetQuestCompletion()
+    return completion.completed
+}
 
 // ==============================
 // Code related to managin the player: create new one, fetch from db, remove, ...
