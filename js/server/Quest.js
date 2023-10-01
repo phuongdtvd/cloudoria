@@ -22,3 +22,5 @@ class Quest {
         return this.testFunction();
     }
 }
+
+module.exports = Quest

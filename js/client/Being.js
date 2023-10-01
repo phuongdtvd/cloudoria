@@ -5,7 +5,6 @@
  * Author: Jerome Renaux
  * E-mail: jerome.renaux@gmail.com
  */
-import Task1Test from './task_tests/Quest1_test.js';
 // Helper function to make a sprite object absorb all the properties of a provided JSON object; Object.assign() should work as well
 Phaser.Sprite.prototype.absorbProperties = function(object){
     for (var key in object) {
@@ -227,17 +226,6 @@ Being.prototype.finishMovement = function(finalOrientation,action){
     if(this.isPlayer) {
         if (action.action == 1) { // talk
             action.character.displayBubble(action.text);
-            if(action.text === '') Client.setCurrentQuest('Quest1')
-            let currentQuest = Client.getCurrentQuest()
-            if(currentQuest !== ''){
-                Task1Test()
-                .then((result) => {
-                  console.log(result);
-                })
-                .catch((error) => {
-                  console.error(error);
-                });
-            }
             if(!Game.speakAchievement) Game.handleSpeakAchievement();
         }
         Game.moveTarget.visible = false;
