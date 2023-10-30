@@ -734,16 +734,43 @@
         "x": 0.16,
         "y": 0.25
       },
-      "dialogue": [
-        "Hi young one!",
-        "I see you're new in town.",
-        "As you can see we're having some trouble with rats right now.",
-        "Can you put this rat extermination in a bucket for me?",
-        "Oh, you don't know what a bucket is?",
-        "Don't worry about that, I have just the thing for you",
-        "Here's a handy guide to help you with everything S3!",
-        "https://bit.ly/S3-NEWSCOMER-GUIDE"
-      ]
+      "phases": {
+        "QUEST_0": {
+          "action": ["give_quest"],
+          "dialogue": [
+            "Hi young one!",
+            "I see you're new in town.",
+            "As you can see we're having some trouble with rats right now.",
+            "Can you put this rat extermination in a bucket for me?",
+            "Oh, you don't know what a bucket is?",
+            "Don't worry about that, I have just the thing for you",
+            "Here's a handy guide to help you with everything S3!",
+            "https://bit.ly/S3-NEWSCOMER-GUIDE"
+          ]
+        },
+        "QUEST_1_IN_PROGRESS": {
+          "action": ["check_current_quest"],
+          "dialogue": [
+            "Oh you're back, how's it going?",
+            "Let me check if that bucket has been deployed."
+          ]
+        },
+        "QUEST_1_FAIL": {
+          "action": [],
+          "dialogue": [
+            "Hmm, my searching spell can't seem to detect the bucket.",
+            "Make sure you have created the bucket and named it correctly."
+          ]
+        },
+        "QUEST_1_DONE": {
+          "action": ["give_reward"],
+          "dialogue": [
+            "Oh you're back, how's it going?",
+            "Let me check if that bucket has been deployed."
+          ]
+        }
+      }
+
     },
     "scientist": {
       "frame": 0,
