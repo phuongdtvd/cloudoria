@@ -201,3 +201,4 @@ function filterEntities(layer){ // Filters out game entities that don't need to 
 
 module.exports.format = formatMap;
 
+// formatMap()
