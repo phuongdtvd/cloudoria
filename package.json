@@ -1,20 +1,21 @@
 {
   "name": "phaserquest",
   "version": "1.0.0",
+  "private": true,
   "description": "Clone of Mozilla's BrowserQuest with the Phaser engine",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "run-p start serve",
     "start:db": "sudo mongod",
     "start": "node server.js",
-    "client:dev": "http-server -p 80",
+    "serve": "vite",
     "docker:build:run": "bash scripts/docker-build-and-run.sh",
     "docker:start": "docker-compose up -d",
     "docker:restart:map": "bash scripts/docker-restart-map.sh",
     "docker:build": "docker-compose build",
     "docker:rebuild": "bash scripts/docker-rebuild.sh",
     "map:format": "node -e 'require(\"./js/server/format\").format()'",
-    "build": "webpack"
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -45,9 +46,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "expose-loader": "^0.7.3",
-    "path-browserify": "^1.0.1",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "npm-run-all": "4.1.5",
+    "vite": "4.5.0"
   }
 }
