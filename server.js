@@ -30,6 +30,7 @@ var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 var mongo = require('mongodb').MongoClient;
 var quickselect = require('quickselect'); // Used to compute the median for latency
+var cors = require('cors');
 
 var mapFormat = require('./js/server/format.js');
 var gs = require('./js/server/GameServer.js').GameServer;
@@ -43,11 +44,24 @@ gs.server = server;
 app.use('/css',express.static(__dirname + '/css'));
 app.use('/js',express.static(__dirname + '/js'));
 app.use('/assets',express.static(__dirname + '/assets'));
+app.use(cors());
 
 
 app.get('/',function(req,res){
     res.sendFile(__dirname+'/index.html');
 });
+
+app.post('/game-test', async (req, res) => {
+    console.log(req.body)
+    const { name, params } = req.body; // Assuming the frontend sends a JSON object with 'name' and 'params' properties
+    try {
+        const result = await gs.checkQuest(name, params)
+        res.json({ result });
+      } catch (error) {
+        res.status(500).json({ error: 'Function execution error' });
+        return;
+      }
+  });
 
 // Manage command line arguments
 var myArgs = require('optimist').argv;

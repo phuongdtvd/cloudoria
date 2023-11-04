@@ -702,13 +702,27 @@
         "y": 0.3
       },
       "nbFrames": 2,
-      "dialogue": ["Brave adventurer, venture north and slay the Skeleton king to save us all!", "You'll be rewarded in cookies!"]
+      "dialogue": [
+        "Brave adventurer, venture north and slay the Skeleton king to save us all!",
+        "You'll be rewarded in cookies!"
+      ]
     },
     "villagegirl": {
       "frame": 0,
       "atlasKey": "villagegirl",
       "nbFrames": 2,
-      "dialogue": ["Enjoy this game made with Phaser, Node.js and Socket.io!", "Check the blog out if you want to learn more."]
+      "dialogue": [
+        "Hello, traveler! Welcome to our village in the heart of the forest.",
+        "The trees here are so tall and ancient. They've been standing for centuries.",
+        "I love coming out to the forest to pick wildflowers. They're so pretty.",
+        "Did you know there's a hidden waterfall deep within the woods? It's my secret spot.",
+        "The villagers are all very friendly here. We're like one big family.",
+        "Beware of the wolves at night. They can be quite fierce when hungry.",
+        "Have you visited the wise old hermit in the forest? He's full of interesting stories.",
+        "There's a rumor that hidden treasure lies deep within the forest. Maybe it's just a legend.",
+        "The forest can be a mysterious and enchanting place, but also dangerous at times.",
+        "Please take care on your journey. You're always welcome back here."
+      ]
     },
     "villager": {
       "frame": 0,
@@ -718,13 +732,35 @@
         "y": 0.25
       },
       "nbFrames": 2,
-      "dialogue": ["Notice how there is no music?", "Rumor has it that the developer went mad from repeatedly hearing the same musics and removed them all..."]
+      "dialogue": [
+        "Good day, traveler. How can I assist you?",
+        "Life in the village is simple, but we're content with what we have.",
+        "The village elder is a wise and kind leader. We trust his guidance.",
+        "Our crops have been flourishing this year. It's a bountiful harvest.",
+        "The local blacksmith does excellent work. He forged my favorite tool.",
+        "The forest can be quite mysterious. Some say it's home to magical creatures.",
+        "Have you met the herbalist in the village? Her remedies work wonders.",
+        "The village celebrations are always a lot of fun. You should join us next time.",
+        "We occasionally have travelers passing through, but it's mostly quiet here.",
+        "If you need directions or advice, feel free to ask. We're here to help."
+      ]
     },
     "priest": {
       "frame": 0,
       "atlasKey": "priest",
       "nbFrames": 2,
-      "dialogue": ["Hello there!", "You can press enter to open the chat bar and talk to other players.", "You can do the same by pressing the bubble icon at the bottom right of the screen."]
+      "dialogue": [
+        "Blessings upon you, my child. How may I be of service to you today?",
+        "The divinity of this forest is truly wondrous. Nature is a reflection of the divine.",
+        "The village elder often seeks guidance from the spirits of the forest. They guide us well.",
+        "Prayer and meditation are important aspects of our daily life in the village.",
+        "The healing power of nature is profound. It can mend both body and soul.",
+        "In times of trouble, we turn to the ancient rituals passed down through generations.",
+        "Our faith is strong, and it sustains us in both times of joy and hardship.",
+        "The temple deep within the forest is a sanctuary of peace and reflection.",
+        "If you ever seek spiritual guidance or healing, do not hesitate to visit me in the temple.",
+        "May the blessings of the forest and the spirits of our ancestors be with you."
+      ]
     },
     "sorcerer": {
       "frame": 0,
@@ -780,7 +816,18 @@
         "y": 0.25
       },
       "nbFrames": 1,
-      "dialogue": ["This game was made using the Phaser game engine.", "However, it is not related to the Phaser development team and was made independently. Enjoy!"]
+      "dialogue": [
+        "Greetings, traveler. I'm deeply engrossed in my research. How can I assist you?",
+        "Science is the key to understanding the mysteries of our world and beyond.",
+        "The forest is a fascinating subject for my studies. Its ecosystems are diverse and intricate.",
+        "I've been studying the flora and fauna in this forest. Each discovery is a thrill.",
+        "The village elder often seeks my expertise in matters related to nature and the environment.",
+        "I believe that science and magic are closely intertwined in this mystical forest.",
+        "I've developed some groundbreaking inventions in my time. Perhaps you'll see them in action.",
+        "My laboratory is my sanctuary, a place where I can explore the unknown.",
+        "If you have any questions about the natural world or scientific inquiries, feel free to ask.",
+        "Remember, knowledge is power, and curiosity is the path to discovery."
+      ]
     },
     "agent": {
       "frame": 0,
