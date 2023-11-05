@@ -1,0 +1,14 @@
+import './Being.js';
+import './client.js';
+import './Decoder.js';
+import './easystar.min.js';
+import './Factory.js';
+import './game.js';
+import './home.js';
+import './Human.js';
+import './Item_client.js';
+import './main.js';
+import './Monster_client.js';
+import './NPC.js';
+import './phaser-input.min.js';
+import './Player_client.js';

@@ -6,3 +6,4 @@ EU-Frankfurt.pem
 Procfile
 *.pem
 **/*.env
+dist
