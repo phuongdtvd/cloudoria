@@ -1,3 +1,6 @@
+import '../../js/spaceMap.js'
+import '../../js/AOIutils.js'
+import '../../js/CoDec.js'
 import './Being.js';
 import './client.js';
 import './Decoder.js';

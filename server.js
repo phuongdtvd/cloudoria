@@ -46,6 +46,7 @@ app.use('/css', express.static(path.resolve(__dirname, 'css')));
 app.use('/js', express.static(path.resolve(__dirname, 'dist', 'js')));
 app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
 app.use(cors());
+app.use(express.json());
 
 app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
@@ -92,7 +93,7 @@ function sleep(milliseconds) {
     gs.readMap();
     server.setUpdateLoop();
 
-    mongo.connect('mongodb://' + mongoHost, function (err, client) {
+    mongo.connect('mongodb://0.0.0.0:27017', function (err, client) {
       if (err) throw err;
       server.db = client.db('phaserQuest');
       console.log('Connection to db established');

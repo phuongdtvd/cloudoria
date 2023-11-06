@@ -242,7 +242,7 @@ Being.prototype.finishMovement = async function(finalOrientation,action){
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name: "Quest1", params:[] }),
+                body: JSON.stringify({ "name": "Quest1", "params":[] }),
               });
             console.log(response)
             if(isValidHttpUrl(action.text)){
