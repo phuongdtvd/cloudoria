@@ -231,29 +231,20 @@ function isValidHttpUrl(string) {
     return url.protocol === "http:" || url.protocol === "https:";
   }
 
-async function checkQuest(name, params){
-    return await fetch('http://localhost:8081/game-test', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ "name": name, "params":params }),
-    });
-}
-
 Being.prototype.finishMovement = async function(finalOrientation,action){
     // Called whenever a path has been travelled to its end; based on the action object, the appropriate action is taken
     // finalOrientation is a value between 1 and 4 indicatinh the orientation the player should have at the end of the path
     // action is a small object containing data about what to do once the path is ended (talk to NPC, fight monster, ...)
     if(this.isPlayer) {
         if (action.action == 1) { // talk
-            // const response = await checkQuest("Quest1", [])
+            // const response = await Game.checkQuest("Quest1", [])
             // console.log(response)
             if(isValidHttpUrl(action.text)){
                 action.character.displayBubble(action.text, action.text);
             } else{
                 action.character.displayBubble(action.text);
             }
+            if(action.text === '' && action.character.questGiver === true){}
             if(!Game.speakAchievement) Game.handleSpeakAchievement();
         }
         Game.moveTarget.visible = false;

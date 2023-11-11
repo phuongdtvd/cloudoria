@@ -5,6 +5,7 @@
  */
 
 "use strict";
+
 var Game = {
     borderPadding: 10, // size of the gray border of the game window
     HUDheight: 32, // height of the HUD bar at the bottom (with life etc.)
@@ -32,7 +33,11 @@ var Game = {
     latency: 0, // Initial latency of the client; continuously updated by values from server
     charactersPool: {}, // Map of the players in the game, accessed by their player id
     clickDelay: Phaser.Timer.SECOND * 0.2, // minimum time between player mouse clicks
-    clickEnabled: true // bool used to check if the player has clicked faster than the click delay
+    clickEnabled: true, // bool used to check if the player has clicked faster than the click delay
+    action: {
+        give_quest: Game.giveQuest,
+        checkQuest: Game.checkQuest
+    }
 };
 window.Game = Game;
 // used to map the orientation of the player, stored as a number, to the actual name of the orientation
@@ -392,6 +397,7 @@ Game.setLatency = function(latency){
 };
 
 Game.initWorld = function(data){ // Initialize the game world based on the server data
+    Client.setCurrentStage("QUEST_0")
     AOIutils.nbAOIhorizontal = data.nbAOIhorizontal;
     AOIutils.lastAOIid = data.lastAOIid;
 
@@ -1311,6 +1317,21 @@ Game.handleClick = function(){
     return false;
 };
 
+Game.giveQuest = function(name, state){
+    Client.setCurrentQuest(name)
+    Client.setCurrentStage(state)
+}
+
+Game.checkQuest = async function checkQuest(name, params){
+    return await fetch('http://localhost:8081/game-test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "name": name, "params":params }),
+    });
+}
+
 Game.handleCharClick = function(character){ // Handles what happens when clicking on an NPC
     if (Game.handleClick()) {
         // character is the sprite that was clicked
@@ -1323,20 +1344,27 @@ Game.handleCharClick = function(character){ // Handles what happens when clickin
         // Game.player.dialoguesMemory keeps track of the last line (out of the multiple an NPC can say) that a given NPC has
         // said to the player; the following finds which one it is, and increment it to display the next one
         var lastline;
+        var stage = Client.getCurrentStage()
         if (Game.player.dialoguesMemory.hasOwnProperty(cid)) {
             // character.dialogue is an array of all the lines that an NPC can say. If the last line said is the last
             // of the array, then assign -1, so that no line will be displayed at the next click (and then it will resume from the first line)
-            if (Game.player.dialoguesMemory[cid] >= character.dialogue.length) Game.player.dialoguesMemory[cid] = -1;
+            if (Game.player.dialoguesMemory[cid] >= character.phases[stage].dialogue.length) Game.player.dialoguesMemory[cid] = -1;
         } else {
             // If the player has never talked to the NPC, start at the first line
             Game.player.dialoguesMemory[cid] = 0;
         }
         lastline = Game.player.dialoguesMemory[cid]++; // assigns to lastline, then increment
+        var text
+        if(character.questGiver === true){
+            text = lastline >= 0 ? character.phases[stage].dialogue[lastline] : ''
+        }
+        else{text = lastline >= 0 ? character.dialogue[lastline] : ''}
         var action = {
             action: 1, // talk
             id: cid,
-            text: (lastline >= 0 ? character.dialogue[lastline] : ''), // if -1, don't display a bubble
-            character: character
+            text: text, // if -1, don't display a bubble
+            character: character,
+            quest: character.phases[stage].action
         };
         Game.player.prepareMovement(end, 2, action, 0, true); // true : send path to server
     };

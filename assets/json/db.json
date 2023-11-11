@@ -770,9 +770,12 @@
         "x": 0.16,
         "y": 0.25
       },
+      "questGiver": true,
       "phases": {
         "QUEST_0": {
-          "action": ["give_quest"],
+          "action": {
+            "give_quest": ["Quest1", "QUEST_1_IN_PROGRESS"]
+          },
           "dialogue": [
             "Hi young one!",
             "I see you're new in town.",
@@ -785,7 +788,9 @@
           ]
         },
         "QUEST_1_IN_PROGRESS": {
-          "action": ["check_current_quest"],
+          "action": {
+            "checkQuest": ["Quest1", "QUEST_1_IN_PROGRESS"]
+          },
           "dialogue": [
             "Oh you're back, how's it going?",
             "Let me check if that bucket has been deployed."

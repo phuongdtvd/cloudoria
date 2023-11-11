@@ -99,6 +99,14 @@ Client.getCurrentQuest = function(){
     return localStorage.getItem('currentQuest');
 };
 
+Client.setCurrentStage = function(){
+    localStorage.setItem("currentStage", 'QUEST_0')
+}
+
+Client.getCurrentStage = function(){
+    return localStorage.getItem("currentStage")
+}
+
 
 Client.socket.on('pid',function(playerID){ // the 'pid' event is used for the server to tell the client what is the ID of the player
     Client.setLocalData(playerID);
