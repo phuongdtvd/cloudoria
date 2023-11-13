@@ -99,8 +99,8 @@ Client.getCurrentQuest = function(){
     return localStorage.getItem('currentQuest');
 };
 
-Client.setCurrentStage = function(){
-    localStorage.setItem("currentStage", 'QUEST_0')
+Client.setCurrentStage = function(stage){
+    localStorage.setItem("currentStage", stage)
 }
 
 Client.getCurrentStage = function(){

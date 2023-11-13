@@ -34,12 +34,9 @@ var Game = {
     charactersPool: {}, // Map of the players in the game, accessed by their player id
     clickDelay: Phaser.Timer.SECOND * 0.2, // minimum time between player mouse clicks
     clickEnabled: true, // bool used to check if the player has clicked faster than the click delay
-    action: {
-        give_quest: Game.giveQuest,
-        checkQuest: Game.checkQuest
-    }
 };
 window.Game = Game;
+
 // used to map the orientation of the player, stored as a number, to the actual name of the orientation
 // (used to select the right animations to play, by name)
 var orientationsDict = {
@@ -49,6 +46,9 @@ var orientationsDict = {
     4: 'down'
 };
 window.orientationsDict = orientationsDict;
+
+var showDebug = true;
+window.showDebug = showDebug
 
 Game.init = function(){
     Game.easystar = new EasyStar.js();
@@ -1322,6 +1322,10 @@ Game.giveQuest = function(name, state){
     Client.setCurrentStage(state)
 }
 
+Client.giveStage = function(stage){
+    Client.setCurrentStage(state)
+}
+
 Game.checkQuest = async function checkQuest(name, params){
     return await fetch('http://localhost:8081/game-test', {
         method: 'POST',
@@ -1348,7 +1352,12 @@ Game.handleCharClick = function(character){ // Handles what happens when clickin
         if (Game.player.dialoguesMemory.hasOwnProperty(cid)) {
             // character.dialogue is an array of all the lines that an NPC can say. If the last line said is the last
             // of the array, then assign -1, so that no line will be displayed at the next click (and then it will resume from the first line)
-            if (Game.player.dialoguesMemory[cid] >= character.phases[stage].dialogue.length) Game.player.dialoguesMemory[cid] = -1;
+            if(character.questGiver === true){
+                if (Game.player.dialoguesMemory[cid] >= character.phases[stage].dialogue.length) Game.player.dialoguesMemory[cid] = -1;
+            }
+            else{
+                if (Game.player.dialoguesMemory[cid] >= character.dialogue.length) Game.player.dialoguesMemory[cid] = -1;
+            }
         } else {
             // If the player has never talked to the NPC, start at the first line
             Game.player.dialoguesMemory[cid] = 0;
@@ -1364,7 +1373,7 @@ Game.handleCharClick = function(character){ // Handles what happens when clickin
             id: cid,
             text: text, // if -1, don't display a bubble
             character: character,
-            quest: character.phases[stage].action
+            quest: character.questGiver? character.phases[stage].action : []
         };
         Game.player.prepareMovement(end, 2, action, 0, true); // true : send path to server
     };
@@ -1582,11 +1591,19 @@ Game.update = function(){ // Main update loop of the client
     }
 };
 
-Game.render = function(){ // Use to display debug information, not used in production
-    /*game.debug.cameraInfo(game.camera, 32, 32);
-    Game.entities.forEach(function(sprite){
-        game.debug.spriteBounds(sprite);
-    },this);
-    game.debug.spriteBounds(Game.player);
-    game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");*/
-};
+// Game.render = function(){ // Use to display debug information, not used in production
+//     game.debug.cameraInfo(game.camera, 32, 32);
+//     // Game.entities.forEach(function(sprite){
+//     //     game.debug.spriteBounds(sprite);
+//     // },this);
+    
+//     // var playerCheckInterval = setInterval(checkPlayerAvailability, 100);
+//     // game.debug.spriteBounds(Game.player);
+//     game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");
+//     game.debug.body()
+// };
+
+Game.action = {
+    "give_quest": Game.giveQuest,
+    "checkQuest": Game.checkQuest
+}

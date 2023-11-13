@@ -244,7 +244,12 @@ Being.prototype.finishMovement = async function(finalOrientation,action){
             } else{
                 action.character.displayBubble(action.text);
             }
-            if(action.text === '' && action.character.questGiver === true){}
+            if(action.text === '' && action.character.questGiver === true){
+                console.log(action.quest)
+                for (const [questName, params] of Object.entries(action.quest)) {
+                    Game.action[questName](...params)
+                }
+            }
             if(!Game.speakAchievement) Game.handleSpeakAchievement();
         }
         Game.moveTarget.visible = false;
