@@ -261,7 +261,8 @@ GameServer.setLoops = function(){ // Sets up the server update loop, and the reg
 GameServer.checkQuest = async function (questName, params){
     let quest = GameServer.quests[questName]
     let completion = await quest.GetQuestCompletion()
-    return completion.completed
+    console.log("completion: ", completion)
+    return completion
 }
 
 // ==============================

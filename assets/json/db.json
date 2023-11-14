@@ -797,7 +797,9 @@
           ]
         },
         "QUEST_1_FAIL": {
-          "action": [],
+          "action": {
+            "giveStage": ["QUEST_1_IN_PROGRESS"]
+          },
           "dialogue": [
             "Hmm, my searching spell can't seem to detect the bucket.",
             "Make sure you have created the bucket and named it correctly."
@@ -806,8 +808,8 @@
         "QUEST_1_DONE": {
           "action": ["give_reward"],
           "dialogue": [
-            "Oh you're back, how's it going?",
-            "Let me check if that bucket has been deployed."
+            "Good job young adventurer, I have successfully detected the creation of the new AWS S3 artifact.",
+            "Now for the next task, you need to upload these artifacts to the AWS S3 bucket."
           ]
         }
       }

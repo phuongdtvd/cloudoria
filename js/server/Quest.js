@@ -1,9 +1,11 @@
 class Quest {
-    constructor(name, testFunction, questGiver, rewards){ //Ran once you initalize class
+    constructor(name, testFunction, questGiver, rewards, failState, successState){ //Ran once you initalize class
         this.name = name;
         this.testFunction = testFunction;
         this.questGiver = questGiver;
         this.rewards = rewards;
+        this.fail = failState
+        this.success = successState
     }
 
     GetQuestName(){
@@ -18,8 +20,13 @@ class Quest {
         return this.rewards;
     }
 
-    GetQuestCompletion(){
-        return this.testFunction();
+    async GetQuestCompletion(){
+        var result = await this.testFunction();
+        if (result.completed === true){
+            return {...result, state: this.success}
+        } else{
+            return {...result, state: this.fail}
+        }
     }
 }
 

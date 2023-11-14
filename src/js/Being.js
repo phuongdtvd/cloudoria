@@ -247,7 +247,7 @@ Being.prototype.finishMovement = async function(finalOrientation,action){
             if(action.text === '' && action.character.questGiver === true){
                 console.log(action.quest)
                 for (const [questName, params] of Object.entries(action.quest)) {
-                    Game.action[questName](...params)
+                    await Game.action[questName](...params)
                 }
             }
             if(!Game.speakAchievement) Game.handleSpeakAchievement();

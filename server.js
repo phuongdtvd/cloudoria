@@ -53,10 +53,10 @@ app.get('/', function (req, res) {
 });
 
 app.post('/game-test', async (req, res) => {
-  console.log(req.body);
   const { name, params } = req.body; // Assuming the frontend sends a JSON object with 'name' and 'params' properties
   try {
     const result = await gs.checkQuest(name, params);
+    console.log("completion: ",result)
     res.json({ result });
   } catch (error) {
     res.status(500).json({ error: 'Function execution error' });

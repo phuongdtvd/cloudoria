@@ -1322,18 +1322,20 @@ Game.giveQuest = function(name, state){
     Client.setCurrentStage(state)
 }
 
-Client.giveStage = function(stage){
-    Client.setCurrentStage(state)
+Game.giveStage = function(stage){
+    Client.setCurrentStage(stage)
 }
 
 Game.checkQuest = async function checkQuest(name, params){
-    return await fetch('http://localhost:8081/game-test', {
+    const result =  await fetch('http://localhost:8081/game-test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ "name": name, "params":params }),
     });
+    console.log("result: ", result)
+    return result
 }
 
 Game.handleCharClick = function(character){ // Handles what happens when clicking on an NPC
@@ -1605,5 +1607,6 @@ Game.update = function(){ // Main update loop of the client
 
 Game.action = {
     "give_quest": Game.giveQuest,
-    "checkQuest": Game.checkQuest
+    "checkQuest": Game.checkQuest,
+    "giveStage": Game.giveStage
 }
