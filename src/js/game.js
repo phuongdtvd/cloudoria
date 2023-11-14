@@ -1334,7 +1334,8 @@ Game.checkQuest = async function checkQuest(name, params){
         },
         body: JSON.stringify({ "name": name, "params":params }),
     });
-    console.log("result: ", result)
+    const result2 = await result.json()
+    console.log("result: ", result2)
     return result
 }
 
