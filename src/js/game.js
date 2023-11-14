@@ -1335,7 +1335,7 @@ Game.checkQuest = async function checkQuest(name, params){
         body: JSON.stringify({ "name": name, "params":params }),
     });
     const result2 = await result.json()
-    Game.setCurrentStage(result2.result.state)
+    Game.giveStage(result2.result.state)
     return result
 }
 
