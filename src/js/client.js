@@ -171,6 +171,12 @@ Client.sendChat = function(txt){
     Client.socket.emit('chat',txt);
 };
 
+Client.equip = function(name){
+    Client.socket.emit('equip', {
+        itemKey: "item-"+name
+    })
+}
+
 Client.sendCheck = function(questName){
     if(questName === '') return;
     console.log("Sendcheck: ", questName)

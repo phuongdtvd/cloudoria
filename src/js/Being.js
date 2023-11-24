@@ -237,7 +237,7 @@ Being.prototype.finishMovement = async function(finalOrientation,action){
     // action is a small object containing data about what to do once the path is ended (talk to NPC, fight monster, ...)
     if(this.isPlayer) {
         if (action.action == 1) { // talk
-            Game.updateEquipment(Game.player, 87)
+            // Client.equip("sword2")
             if(isValidHttpUrl(action.text)){
                 action.character.displayBubble(action.text, action.text);
             } else{

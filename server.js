@@ -139,6 +139,11 @@ function sleep(milliseconds) {
       gs.revivePlayer(gs.getPlayerID(socket.id));
     });
 
+    socket.on('equip', function (equipment) {
+      var player = gs.players[gs.getPlayerID(socket.id)]
+      player.applyItem(equipment)
+    });
+
     socket.on('path', function (data) {
       if (!gs.handlePath(data.path, data.action, data.or, socket)) socket.emit('reset', gs.getCurrentPosition(socket.id));
     });
