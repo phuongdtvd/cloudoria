@@ -124,7 +124,6 @@ Player.prototype.applyItem = function(item){
     var itemInfo = GameServer.db.items[item.itemKey];
     if(itemInfo === undefined){
         console.error('WARNING : undefined data for item : ');
-        console.log(item);
         return;
     }
     var picked = true;

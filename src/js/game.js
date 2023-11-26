@@ -90,6 +90,7 @@ Game.create = function() {
     Game.monstersIDmap = {};
     Game.makeIDmap(Game.itemsInfo, Game.itemsIDmap);
     Game.makeIDmap(Game.monstersInfo, Game.monstersIDmap);
+    Game.blockers = game.add.group();
     Game.entities = game.add.group(); // Group containing all the objects appearing on the map (npc, monster, items, players ...)
     Game.scenery = game.add.group(); // Group containing all the animated sprites generated from the map
 
@@ -241,7 +242,6 @@ Game.fadeInTween = function(object){ // Fade-in effect used to spawn items and m
 };
 
 // UPDATE CODE
-
 Game.updatePlayerStatus = function(player,info){ // info contains the updated data from the server
     if(info.connected == false){
         Game.removePlayer(player,true);
@@ -274,6 +274,7 @@ Game.updateDisplayList = function(){
 };
 
 Game.updateEquipment = function(player,eqID){
+    console.log(player, eqID)
     var equipment = Game.itemsIDmap[eqID];
     var itemInfo = Game.itemsInfo[equipment];
     if(itemInfo.type == 1){ // weapon
@@ -397,7 +398,9 @@ Game.setLatency = function(latency){
 };
 
 Game.initWorld = function(data){ // Initialize the game world based on the server data
-    Client.setCurrentStage("QUEST_0")
+    if(!Client.getCurrentStage()){
+        Client.setCurrentStage("QUEST_0")
+    }
     AOIutils.nbAOIhorizontal = data.nbAOIhorizontal;
     AOIutils.lastAOIid = data.lastAOIid;
 

@@ -793,7 +793,8 @@
           },
           "dialogue": [
             "Oh you're back, how's it going?",
-            "Let me check if that bucket has been deployed."
+            "Let me check if that bucket has been deployed.",
+            "Check back with me in 20 seconds"
           ]
         },
         "QUEST_1_FAIL": {
@@ -805,11 +806,21 @@
             "Make sure you have created the bucket and named it correctly."
           ]
         },
-        "QUEST_1_DONE": {
-          "action": ["give_reward"],
+        "QUEST_1_SUCEED": {
+          "action": {
+            "giveStage": ["QUEST_1_DONE"]
+          },
           "dialogue": [
             "Good job young adventurer, I have successfully detected the creation of the new AWS S3 artifact.",
             "Now for the next task, you need to upload these artifacts to the AWS S3 bucket."
+          ]
+        },
+        "QUEST_1_DONE": {
+          "action": {
+            "giveStage": ["QUEST_2_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Good job with that last task, now let's move on to the next one."
           ]
         }
       }
