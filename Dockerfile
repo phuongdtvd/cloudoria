@@ -5,11 +5,16 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 
+# Define the service ID as a build argument
+ARG SERVICE_ID=3b1b7383-d67c-48bd-8a98-15f4c29ef28d
+
 FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+# Use the service ID in the --mount option
+RUN --mount=type=cache,id=s/${SERVICE_ID}-/root/cache/pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+# Use the service ID in the --mount option
+RUN --mount=type=cache,id=s/${SERVICE_ID}-/root/cache/pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
 FROM base
