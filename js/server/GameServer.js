@@ -504,10 +504,10 @@ GameServer.handlePath = function(path,action,orientation,socket){ // Processes a
             console.log('Jump in path');
             return false;
         }
-        if(GameServer.collisionGrid[path[p].y][path[p].x]){ // Check that the path doesn't contain collidable tiles (would be cheating)
-            console.log('Obstacle on path');
-            return false;
-        }
+        // if(GameServer.collisionGrid[path[p].y][path[p].x]){ // Check that the path doesn't contain collidable tiles (would be cheating)
+        //     console.log('Obstacle on path');
+        //     return false;
+        // }
     }
 
     var departureTime = Date.now() - socket.latency; // Needed the corrected departure time for the update loop (updateWalk())

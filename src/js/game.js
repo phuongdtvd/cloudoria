@@ -500,6 +500,18 @@ Game.removePlayer = function(player,animate){
     delete Game.charactersPool[player.id];
 };
 
+Game.destroyNPC = function(npcId) {
+    for (var i = Game.entities.children.length - 1; i >= 0; i--) {
+        var entity = Game.entities.children[i];
+
+        // Check if the entity is an instance of the NPC class and has the specified npcId custom property
+        if (entity instanceof NPC && entity.npcId === npcId) {
+            Game.collisionArray[entity.tile.y][entity.tile.x] = 0
+            entity.destroy()
+        }
+    }
+}
+
 // ======================
 
 // SCREENS CODE : Code about displaying screens of any kind
@@ -1293,7 +1305,14 @@ Game.displayNPC = function() {
         var object = Game.map.objects.entities[e];
         if (!entities.hasOwnProperty(object.gid - 1961)) continue; // 1961 is the starting ID of the npc tiles in the map ; this follows from how the map was made in the original BrowserQuest
         var entityInfo = entities[object.gid - 1961];
-        if(entityInfo.npc) Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite)));
+        if(entityInfo.npc) {
+            if(object.properties === null){
+                Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite)));
+            }
+            else{
+                Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite, object.properties.npcId)));
+            }
+        }
     }
 };
 
@@ -1612,5 +1631,7 @@ Game.update = function(){ // Main update loop of the client
 Game.action = {
     "give_quest": Game.giveQuest,
     "checkQuest": Game.checkQuest,
-    "giveStage": Game.giveStage
+    "giveStage": Game.giveStage,
+    "giveReward": Client.equip,
+    "destroyNPC": Game.destroyNPC,
 }
