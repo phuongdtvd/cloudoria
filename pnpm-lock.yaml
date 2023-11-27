@@ -22,7 +22,7 @@ dependencies:
     specifier: ^4.14.0
     version: 4.18.2
   mongodb:
-    specifier: ^3.6.1
+    specifier: ^3.7.4
     version: 3.7.4
   optimist:
     specifier: ^0.6.1
