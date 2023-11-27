@@ -1310,6 +1310,7 @@ Game.displayNPC = function() {
                 Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite)));
             }
             else{
+                // if(Client.getCurrentStage() === "QUEST_0") continue
                 Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite, object.properties.npcId)));
             }
         }

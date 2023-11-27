@@ -28,7 +28,9 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io').listen(server);
-const mongo = require('mongodb').MongoClient;
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const password = process.env.MONGODB_PASSWORD
+const uri = `mongodb+srv://phgdtvd2:${password}@cluster0.n8nz0f4.mongodb.net/?retryWrites=true&w=majority`;
 const quickselect = require('quickselect'); // Used to compute the median for latency
 const cors = require('cors');
 const path = require('path');
@@ -71,33 +73,37 @@ function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
 (async () => {
   if (myArgs.waitForDatabase) await sleep(myArgs.waitForDatabase);
 
-  let mongoHost, mongoDBName;
-  if (myArgs.heroku) {
-    // --heroku flag to behave according to Heroku's specs
-    mongoHost = 'heroku_4tv68zls:' + myArgs.pass + '@ds141368.mlab.com:41368';
-    mongoDBName = 'heroku_4tv68zls';
-  } else {
-    const mongoPort = myArgs.mongoPort || 27017;
-    const mongoServer = myArgs.mongoServer || 'localhost';
-    mongoHost = mongoServer + ':' + mongoPort;
-    mongoDBName = 'phaserQuest';
-  }
-
-  server.listen(myArgs.p || process.env.PORT || 8081, function () {
+  server.listen(myArgs.p || process.env.PORT || 8081, async function () {
     // -p flag to specify port ; the env constiable is needed for Heroku
     console.log('Listening on ' + server.address().port);
     server.clientUpdateRate = 1000 / 5; // Rate at which update packets are sent
     gs.readMap();
     server.setUpdateLoop();
 
-    mongo.connect('mongodb://0.0.0.0:27017', function (err, client) {
-      if (err) throw err;
-      server.db = client.db('phaserQuest');
-      console.log('Connection to db established');
-    });
+    // mongo.connect('mongodb://0.0.0.0:27017', function (err, client) {
+    //   if (err) throw err;
+    //   server.db = client.db('phaserQuest');
+    //   console.log('Connection to db established');
+    // });
+    try {
+      await client.connect();
+      console.log('Connected to MongoDB Atlas');
+      server.db = client.db("phaserQuest");
+      // Your additional setup code here
+    } catch (error) {
+      console.error('Error connecting to MongoDB Atlas:', error);
+    }
   });
 
   io.on('connection', function (socket) {
