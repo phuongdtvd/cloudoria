@@ -10,7 +10,7 @@ var Client = {
     storageIDKey: 'playerID' // key in localStorage of player ID
 };
 window.Client = Client;
-Client.socket = io.connect('https://cloudoria.cloudoria.koyeb:8000');
+Client.socket = io.connect('https://cloudoria-phuongdtvd.koyeb.app/');
 
 // The following checks if the game is initialized or not, and based on this either queues the events or process them
 // The original socket.onevent function is copied to onevent. That way, onevent can be used to call the origianl function,

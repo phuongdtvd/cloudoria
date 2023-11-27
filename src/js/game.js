@@ -1350,7 +1350,7 @@ Game.giveStage = function(stage){
 }
 
 Game.checkQuest = async function checkQuest(name, params){
-    const result =  await fetch('https://cloudoria.cloudoria.koyeb:8000/game-test', {
+    const result =  await fetch('https://cloudoria-phuongdtvd.koyeb.app:8000/game-test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
