@@ -3,7 +3,7 @@ async function Task2Test(){
     const client = new S3Client({region: 'us-east-1'});
     const input = { 
       Bucket: "aws-test-game",
-      Key: "index.html" 
+      Key: "sword.png" 
     };
     const command = new HeadObjectCommand(input);
     try {

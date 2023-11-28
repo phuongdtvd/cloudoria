@@ -817,12 +817,55 @@
         },
         "QUEST_1_DONE": {
           "action": {
+            "giveStage": ["QUEST_2"],
+            "giveReward": ["leatherarmor"]
+          },
+          "dialogue": [
+            "Good job with that last task, I can already see your potential.",
+            "Now let's move on to the last task."
+          ]
+        },
+        "QUEST_2": {
+          "action": {
+            "give_quest": ["Quest2", "QUEST_2_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Now I need you to deploy these artifacts to the bucket you just created.",
+            "You can grab the special artifacts from this special link",
+            "http://bit.ly/SPECIAL-ARTIFACTS.",
+            "You can refer to the guide I gave you at the start for the deployment."
+          ]
+        },
+        "QUEST_2_IN_PROGRESS": {
+          "action": {
+            "checkQuest": ["Quest2", "QUEST_2_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Oh you're back, how's it going?",
+            "Let me check if the artifacts is in the bucket.",
+            "Check back with me in 20 seconds"
+          ]
+        },
+        "QUEST_2_FAIL": {
+          "action": {
             "giveStage": ["QUEST_2_IN_PROGRESS"]
           },
           "dialogue": [
-            "Good job with that last task, now let's move on to the next one."
+            "Hmm, my searching spell can't seem to detect the artifacts.",
+            "Try again!."
+          ]
+        },
+        "QUEST_2_DONE": {
+          "action": {
+            "giveStage": ["QUEST_3"],
+            "giveReward": ["sword2"]
+          },
+          "dialogue": [
+            "Good job with that last task, I can already see your potential.",
+            "Now let's move on to the last task."
           ]
         }
+        
       }
 
     },
