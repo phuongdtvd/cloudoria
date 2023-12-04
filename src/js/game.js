@@ -1340,6 +1340,32 @@ Game.handleClick = function(){
     return false;
 };
 
+Game.checkQuestClient = function(questName){
+    switch (questName) {
+        case "Quest0.1":
+            var question = prompt("Is the cloud hosted in the sky? A: Yes, B: No")
+            if(question === "A"){
+                Game.giveStage("QUEST_0.1_DONE")
+            }
+            else{
+                Game.giveStage("QUEST_0.1_FAIL")
+            }
+            break;
+          
+        case "0.2":
+            break;
+    
+        case "0.3":
+            break;
+    
+        case "0.4":
+            break;
+    
+        default:
+            break;
+      }
+}
+
 Game.giveQuest = function(name, state){
     Client.setCurrentQuest(name)
     Client.setCurrentStage(state)
@@ -1635,4 +1661,5 @@ Game.action = {
     "giveStage": Game.giveStage,
     "giveReward": Client.equip,
     "destroyNPC": Game.destroyNPC,
+    "checkQuestClient": Game.checkQuestClient
 }
