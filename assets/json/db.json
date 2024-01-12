@@ -749,9 +749,36 @@
       "frame": 0,
       "atlasKey": "priest",
       "nbFrames": 2,
-      "dialogue": [
-        "Assume the role of the 'royal guard' and obtain the secret password"
-      ]
+      "questGiver": true,
+      "phases": {
+        "QUEST_4_IN_PROGRESS": {
+          "action": {
+            "giveStage": "QUEST_5_IN_PROGRESS",
+            "giveReward": ["goldenarmor"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "Infiltrate the castle"
+          ]
+        },
+        "QUEST_5_IN_PROGRESS": {
+          "action": {
+            "giveReward": ["goldensword"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "Infiltrate the castle"
+          ]
+        }
+      }
     },
     "sorcerer": {
       "frame": 0,
@@ -957,16 +984,17 @@
         },
         "QUEST_2_FAIL": {
           "action": {
-            "giveStage": ["QUEST_2_IN_PROGRESS"]
+            "giveStage": ["QUEST_3_IN_PROGRESS"],
+            "giveReward": ["sword2"]
           },
           "dialogue": [
-            "Hmm, my searching spell can't seem to detect the artifacts.",
-            "Try again!."
+            "Good job with that last task.",
+            "Now let's move on to the last task."
           ]
         },
         "QUEST_2_DONE": {
           "action": {
-            "giveStage": ["QUEST_3"],
+            "giveStage": ["QUEST_3_IN_PROGRESS"],
             "giveReward": ["sword2"]
           },
           "dialogue": [
@@ -974,7 +1002,6 @@
             "Now let's move on to the last task."
           ]
         }
-
       }
 
     },
@@ -1017,10 +1044,39 @@
         "x": 0.25,
         "y": 0.25
       },
-      "dialogue": [
-        "Now traveller, clone the repository using the guide I gave you to your computer",
-        "This game is open source. Feel free to look the code up on Github!"
-      ]
+      "questGiver": true,
+      "phases": {
+        "QUEST_3_IN_PROGRESS": {
+          "action": {
+            "giveStage": ["QUEST_3_DONE"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "https://github.com/phuongdtvd/welcome-adventurer",
+            "After finish reading tell me the command used to clone the thing"
+          ]
+        },
+        "QUEST_3_DONE": {
+          "action": {
+            "giveStage": ["QUEST_4_IN_PROGRESS"],
+            "giveReward": ["redarmor"],
+            "giveReward": ["axe"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "https://github.com/phuongdtvd/welcome-adventurer",
+            "After finish reading tell me the command used to clone the thing"
+          ]
+        }
+      }
     },
     "rick": {
       "frame": 0,
