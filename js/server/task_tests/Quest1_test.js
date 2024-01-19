@@ -1,8 +1,8 @@
 async function Task1Test(){
     const { S3Client, HeadBucketCommand } = require("@aws-sdk/client-s3");
-    const client = new S3Client({region: 'us-east-1'});
+    const client = new S3Client();
     const input = { 
-      Bucket: "aws-test-game", 
+      Bucket: "cloudoria-1", 
     };
     const command = new HeadBucketCommand(input);
     try {

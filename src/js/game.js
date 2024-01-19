@@ -1310,7 +1310,6 @@ Game.displayNPC = function() {
                 Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite)));
             }
             else{
-                // if(Client.getCurrentStage() === "QUEST_0") continue
                 Game.basicAtlasAnimation(Game.entities.add(new NPC(object.x, object.y, entityInfo.sprite, object.properties.npcId)));
             }
         }
@@ -1352,13 +1351,44 @@ Game.checkQuestClient = function(questName){
             }
             break;
           
-        case "0.2":
+        case "Quest0.2":
+            var question = prompt("What does the term 'Cloud' represent in Cloud Computing? A. Physical storage devices B. The internet C. Local computers D. Wireless networks")
+            if(question === "B"){
+                Game.giveStage("QUEST_0.2_DONE")
+            }
+            else{
+                Game.giveStage("QUEST_0.2_FAIL")
+            }
             break;
     
-        case "0.3":
+        case "Quest0.3":
+            var question = prompt("What is the best description of Cloud Computing? A. A method of storing data B. Using the internet and remote servers for various tasks C. A metaphor for heavy data processing D. Using local devices for computing tasks")
+            if(question === "B"){
+                Game.giveStage("QUEST_0.3_DONE")
+            }
+            else{
+                Game.giveStage("QUEST_0.3_FAIL")
+            }
             break;
     
-        case "0.4":
+        case "Quest0.4":
+            var question = prompt("Which one of these are considered 'Cloud Storage'? A. Shopify and Amazon B. Google Drive, iCloud, and OneDrive C. Your computer D. Microsoft Word and Excel")
+            if(question === "B"){
+                Game.giveStage("QUEST_0.4_DONE")
+            }
+            else{
+                Game.giveStage("QUEST_0.4_FAIL")
+            }
+            break;
+
+        case "Quest0.5":
+            var question = prompt("What are the benefits of cloud computing? A. The cloud offers convenience, but it involves costs for services B. Cloud computing is completely free with no associated costs  C. Cloud computing is cheaper than traditional computing D. Benefits of the cloud include only local access to data and programs")
+            if(question === "A"){
+                Game.giveStage("QUEST_0.5_DONE")
+            }
+            else{
+                Game.giveStage("QUEST_0.5_FAIL")
+            }
             break;
     
         default:
@@ -1376,7 +1406,7 @@ Game.giveStage = function(stage){
 }
 
 Game.checkQuest = async function checkQuest(name, params){
-    const result =  await fetch('https://cloudoria-phuongdtvd.koyeb.app/game-test', {
+    const result =  await fetch('http://localhost:8081/game-test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -749,18 +749,36 @@
       "frame": 0,
       "atlasKey": "priest",
       "nbFrames": 2,
-      "dialogue": [
-        "Blessings upon you, my child. How may I be of service to you today?",
-        "The divinity of this forest is truly wondrous. Nature is a reflection of the divine.",
-        "The village elder often seeks guidance from the spirits of the forest. They guide us well.",
-        "Prayer and meditation are important aspects of our daily life in the village.",
-        "The healing power of nature is profound. It can mend both body and soul.",
-        "In times of trouble, we turn to the ancient rituals passed down through generations.",
-        "Our faith is strong, and it sustains us in both times of joy and hardship.",
-        "The temple deep within the forest is a sanctuary of peace and reflection.",
-        "If you ever seek spiritual guidance or healing, do not hesitate to visit me in the temple.",
-        "May the blessings of the forest and the spirits of our ancestors be with you."
-      ]
+      "questGiver": true,
+      "phases": {
+        "QUEST_4_IN_PROGRESS": {
+          "action": {
+            "giveStage": "QUEST_5_IN_PROGRESS",
+            "giveReward": ["goldenarmor"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "Infiltrate the castle"
+          ]
+        },
+        "QUEST_5_IN_PROGRESS": {
+          "action": {
+            "giveReward": ["goldensword"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "Infiltrate the castle"
+          ]
+        }
+      }
     },
     "sorcerer": {
       "frame": 0,
@@ -777,7 +795,6 @@
             "give_quest": ["Quest0.1", "QUEST_0.1_IN_PROGRESS"]
           },
           "dialogue": [
-            "Young adventurer, welcome to Cloudoria.",
             "I thank you for answering our call for help.",
             "As you can see, recently the dark forces corrupted the data of our world and turned the once peaceful Cloudoria into a place swarmed with monsters.",
             "Unfortunately, these are not normal monsters and cannot be dealt with using normal means.",
@@ -785,7 +802,7 @@
             "It allows you to borrow powers from higher beings called Cloud Providers and perform incredible feats.",
             "The previous adventurers have sat together and created a guide to help beginners just like you.",
             "You can click the link I will give you next to access it.",
-            "https://bit.ly/S3-NEWSCOMER-GUIDE",
+            "https://bit.ly/CLOUD-COMPUTING-GUIDE",
             "Come back to me after you have finished reading it and I will test you on your knowledge to see if you're truly ready.",
             "I have high hopes for you, adventurer."
           ]
@@ -809,20 +826,111 @@
         },
         "QUEST_0.1_DONE": {
           "action": {
-            "giveStage": ["QUEST_0.2"]
+            "giveStage": ["QUEST_0.2_IN_PROGRESS"]
           },
           "dialogue": [
             "Awesome job, let's move on to the real test now."
           ]
         },
+        "QUEST_0.2_IN_PROGRESS": {
+          "action": {
+            "checkQuestClient": ["Quest0.2"]
+          },
+          "dialogue": [
+            "You ready?"
+          ]
+        },
+        "QUEST_0.2_FAIL": {
+          "action": {
+            "giveStage": ["QUEST_0.2_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Hmm, that's not quite the correct answer.",
+            "Let's try again!"
+          ]
+        },
+        "QUEST_0.2_DONE": {
+          "action": {
+            "giveStage": ["QUEST_0.3_IN_PROGRESS"]
+          },
+          "dialogue": []
+        },
+        "QUEST_0.3_IN_PROGRESS": {
+          "action": {
+            "checkQuestClient": ["Quest0.3"]
+          },
+          "dialogue": []
+        },
+        "QUEST_0.3_FAIL": {
+          "action": {
+            "giveStage": ["QUEST_0.3_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Hmm, that's not quite the correct answer.",
+            "Let's try again!"
+          ]
+        },
+        "QUEST_0.3_DONE": {
+          "action": {
+            "giveStage": ["QUEST_0.4_IN_PROGRESS"]
+          },
+          "dialogue": []
+        },
+        "QUEST_0.4_IN_PROGRESS": {
+          "action": {
+            "checkQuestClient": ["Quest0.4"]
+          },
+          "dialogue": []
+        },
+        "QUEST_0.4_FAIL": {
+          "action": {
+            "giveStage": ["QUEST_0.4_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Hmm, that's not quite the correct answer.",
+            "Let's try again!"
+          ]
+        },
+        "QUEST_0.4_DONE": {
+          "action": {
+            "giveStage": ["QUEST_0.5_IN_PROGRESS"]
+          },
+          "dialogue": []
+        },
+        "QUEST_0.5_IN_PROGRESS": {
+          "action": {
+            "checkQuestClient": ["Quest0.5"]
+          },
+          "dialogue": []
+        },
+        "QUEST_0.5_FAIL": {
+          "action": {
+            "giveStage": ["QUEST_0.5_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Hmm, that's not quite the correct answer.",
+            "Let's try again!"
+          ]
+        },
+        "QUEST_0.5_DONE": {
+          "action": {
+            "giveStage": ["QUEST_1_IN_PROGRESS"]
+          },
+          "dialogue": [
+            "Young adventurer, you have definitely got what it takes. I'm impressed."
+          ]
+        },
+
         "QUEST_1_IN_PROGRESS": {
           "action": {
             "checkQuest": ["Quest1", "QUEST_1_IN_PROGRESS"]
           },
           "dialogue": [
-            "Oh you're back, how's it going?",
-            "Ready to start the test?",
-            "I'm gonna give you some multiple choice questions. Answer all of them for a reward."
+            "Now I'm going to teach you about one of the most popular services, Amazon Web Service.",
+            "Or AWS for short.",
+            "Click this link.",
+            "https://bit.ly/S3-NEWSCOMER-GUIDE",
+            "After you've finished reading, I need you to create a bucket named cloudoria-1"
           ]
         },
         "QUEST_1_FAIL": {
@@ -876,24 +984,24 @@
         },
         "QUEST_2_FAIL": {
           "action": {
-            "giveStage": ["QUEST_2_IN_PROGRESS"]
+            "giveStage": ["QUEST_3_IN_PROGRESS"],
+            "giveReward": ["sword2"]
           },
           "dialogue": [
-            "Hmm, my searching spell can't seem to detect the artifacts.",
-            "Try again!."
+            "Good job with that last task.",
+            "Now let's move on to the last task."
           ]
         },
         "QUEST_2_DONE": {
           "action": {
-            "giveStage": ["QUEST_3"],
+            "giveStage": ["QUEST_3_IN_PROGRESS"],
             "giveReward": ["sword2"]
           },
           "dialogue": [
-            "Good job with that last task, I can already see your potential.",
+            "Good job with that last task.",
             "Now let's move on to the last task."
           ]
         }
-        
       }
 
     },
@@ -906,7 +1014,7 @@
       },
       "nbFrames": 1,
       "dialogue": [
-        "Greetings, traveler. I'm deeply engrossed in my research. How can I assist you?",
+        "",
         "Science is the key to understanding the mysteries of our world and beyond.",
         "The forest is a fascinating subject for my studies. Its ecosystems are diverse and intricate.",
         "I've been studying the flora and fauna in this forest. Each discovery is a thrill.",
@@ -936,7 +1044,39 @@
         "x": 0.25,
         "y": 0.25
       },
-      "dialogue": ["'sup!", "This game is open source. Feel free to look the code up on Github!"]
+      "questGiver": true,
+      "phases": {
+        "QUEST_3_IN_PROGRESS": {
+          "action": {
+            "giveStage": ["QUEST_3_DONE"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "https://github.com/phuongdtvd/welcome-adventurer",
+            "After finish reading tell me the command used to clone the thing"
+          ]
+        },
+        "QUEST_3_DONE": {
+          "action": {
+            "giveStage": ["QUEST_4_IN_PROGRESS"],
+            "giveReward": ["redarmor"],
+            "giveReward": ["axe"]
+          },
+          "dialogue": [
+            "Githuub-woo! Welcome, curious coder! To start, summon the 'git init' spell to awaken your repository.",
+            "Ah, behold the branches, like tendrils of creativity! Branch out with 'git branch' to create new realms of code.",
+            "Merge your forces with 'git merge' to unite the kingdoms of changes. A merge conflict is but a friendly skirmish, worry not!",
+            "To capture the ancient scrolls of history, scribe 'git log.' Witness the tapestry of commits unfold before your eyes!",
+            "Now click this link read the guide",
+            "https://github.com/phuongdtvd/welcome-adventurer",
+            "After finish reading tell me the command used to clone the thing"
+          ]
+        }
+      }
     },
     "rick": {
       "frame": 0,
