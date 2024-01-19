@@ -1343,7 +1343,7 @@ Game.checkQuestClient = function(questName){
     switch (questName) {
         case "Quest0.1":
             var question = prompt("Is the cloud hosted in the sky? A: Yes, B: No")
-            if(question === "A"){
+            if(question === "B"){
                 Game.giveStage("QUEST_0.1_DONE")
             }
             else{
